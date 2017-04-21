@@ -10,5 +10,5 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:id="@+id/fragment_list"
-       android:name="com.example.jasmeetsingh.movies.FragmentPopularMovies"/>
+       android:name="com.example.jasmeetsingh.movies.TabbedAcitivity$PlaceholderFragment"/>
 </android.support.constraint.ConstraintLayout>

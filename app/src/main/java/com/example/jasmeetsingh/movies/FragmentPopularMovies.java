@@ -46,27 +46,29 @@ public class FragmentPopularMovies extends Fragment{
 
     private void fetchMovies() {
         ApiInterface apiInterface = ApiClient.client();
-        Call<MovieResponse> arrayListCall = apiInterface.getMovieDetails("31fda39458292782a21614f8c2debed6");
+        for(int i=1;i<976;i++) {
+            Call<MovieResponse> arrayListCall = apiInterface.getPopularMovie("31fda39458292782a21614f8c2debed6",i);
 
-        arrayListCall.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if(response.isSuccessful()){
-                    Log.i("movieList",response.message()+response.code());
+            arrayListCall.enqueue(new Callback<MovieResponse>() {
+                @Override
+                public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                    if (response.isSuccessful()) {
+                        Log.i("movieList", response.message() + response.code());
 
-                    MovieResponse movieResponse = response.body();
-                    ArrayList<MoviesDetails> moviesDetailsArrayList = movieResponse.getResults();
-                    arrayList.clear();
-                    arrayList.addAll(moviesDetailsArrayList);
-                    adapter.notifyDataSetChanged();
+                        MovieResponse movieResponse = response.body();
+                        ArrayList<MoviesDetails> moviesDetailsArrayList = movieResponse.getResults();
+                        //arrayList.clear();
+                        arrayList.addAll(moviesDetailsArrayList);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                @Override
+                public void onFailure(Call<MovieResponse> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
 //        call.enqueue(new Callback<CoursesResponse>() {
 //            @Override
 //            public void onResponse(Call<CoursesResponse> call, Response<CoursesResponse> response) {
