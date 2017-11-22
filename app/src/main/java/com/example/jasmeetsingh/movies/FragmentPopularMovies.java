@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.jasmeetsingh.movies.Network.ApiClient;
 import com.example.jasmeetsingh.movies.Network.ApiInterface;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 public class FragmentPopularMovies extends Fragment{
 
     RecyclerView recyclerView;
+    ProgressBar progressBar;
     ArrayList<MoviesDetails> arrayList;
     PopularMoviesAdapter adapter;
 
@@ -35,10 +37,14 @@ public class FragmentPopularMovies extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_look,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        progressBar=(ProgressBar)view.findViewById(R.id.progressBar);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         arrayList = new ArrayList<>();
         adapter = new PopularMoviesAdapter(getActivity(),arrayList);
         recyclerView.setAdapter(adapter);
+        progressBar.setIndeterminate(false);
+        progressBar.setVisibility(View.GONE);
+
         fetchMovies();
         return view;
 
@@ -60,6 +66,7 @@ public class FragmentPopularMovies extends Fragment{
                         //arrayList.clear();
                         arrayList.addAll(moviesDetailsArrayList);
                         adapter.notifyDataSetChanged();
+
                     }
                 }
 

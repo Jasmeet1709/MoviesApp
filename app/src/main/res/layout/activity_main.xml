@@ -7,8 +7,10 @@
     tools:context="com.example.jasmeetsingh.movies.MainActivity">
 
    <fragment
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
+       android:layout_width="368dp"
+       android:layout_height="495dp"
        android:id="@+id/fragment_list"
-       android:name="com.example.jasmeetsingh.movies.TabbedAcitivity$PlaceholderFragment"/>
+       android:name="com.example.jasmeetsingh.movies.TabbedAcitivity$PlaceholderFragment"
+       tools:layout_editor_absoluteY="8dp"
+       tools:layout_editor_absoluteX="8dp" />
 </android.support.constraint.ConstraintLayout>
